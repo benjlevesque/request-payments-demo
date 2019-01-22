@@ -15,6 +15,7 @@ const defaultOptions = {
 class Request {
     constructor(apiKey, options) {
         this.getSignedTransaction = ({ amount, currency, data, expirationDate, paymentAddress }) => __awaiter(this, void 0, void 0, function* () {
+          
             try {
                 const response = yield this.client.post("/raw-broadcast-tx", {
                     expectedAmount: amount,

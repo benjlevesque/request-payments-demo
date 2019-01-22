@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const Request = require("./request").default;
-
 const options =
   process.env.NODE_ENV === "production"
     ? {}
@@ -30,17 +29,22 @@ app.get("/", (re, res) => {
 });
 
 app.post("/request", async (req, res) => {
+  console.log((await axios('https://baguette-signer.request.network/')).data);
   const { amount, data, currency } = req.body;
-  const x = await request.getSignedTransaction({
+  const tx = await request.getSignedTransaction({
     amount,
     currency,
     data,
     paymentAddress: "0x474467F3fac841b5C37B399B6D410B2a3EBC9E41"
   });
-  console.log(x);
-  res.write(x);
+  console.log(tx)
+  res.write(tx);
 });
 
+app.use(function(err, req, res, next) {
+  res.status(500);
+  res.render("error", { error: err });
+});
 
 const listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);

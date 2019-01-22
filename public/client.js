@@ -23,7 +23,7 @@ payment.init("#request-payment"/*,  {
     },
     body: JSON.stringify({
       currency: 'ETH',
-      amount: 40,
+      amount: 1001000000000000000,
       data: {
         hello: 'world'
       }
