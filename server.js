@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const request = require('./request.js');
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -13,8 +14,9 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.post('/request',(req,res)=>{
+app.post('/request',async (req,res)=>{
   console.log('request received')
+  await request.signRequest('0x474467F3fac841b5C37B399B6D410B2a3EBC9E41', 1);
 });
 
 // listen for requests :)
