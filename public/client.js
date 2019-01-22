@@ -13,3 +13,23 @@ payment.init("#request-payment"/*,  {
   baseCurrency: "EUR"
 }*/);
 
+
+(async () => {
+  const rawResponse = await fetch('/request', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      currency: 'ETH',
+      amount: 40,
+      data: {
+        hello: 'world'
+      }
+    })
+  });
+  const content = await rawResponse.json();
+
+  console.log(content);
+})();

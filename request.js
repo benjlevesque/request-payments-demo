@@ -14,7 +14,7 @@ const defaultOptions = {
 };
 class Request {
     constructor(apiKey, options) {
-        this.createRequest = (args) => __awaiter(this, void 0, void 0, function* () {
+        this.getSignedTransaction = (args) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.client.post("/raw-broadcast-tx", args);
                 return response.data;
