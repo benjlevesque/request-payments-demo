@@ -16,3 +16,8 @@ payment.init("#request-payment", ()=> {
   };
 });
 
+payment.init("#request-payment, {
+    amount: 100,
+    currency: "EUR"
+});
+
