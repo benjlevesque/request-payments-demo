@@ -6,7 +6,13 @@ const getData  = ()=> {
 }
 
 const SimplePayment = SimplePaymentModule.default;
-new SimplePayment().init("#request-payment", {
-  getData
+const payment = new SimplePayment();
+
+payment.init("#request-payment", ()=> {
+  const amount = document.getElementById("amount").val();
+  return {
+    amount,
+    currency: "EUR"
+  };
 });
 
