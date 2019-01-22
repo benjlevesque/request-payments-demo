@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+
 const Request = require('./request').default;
 
 const requestOptions = process.env.NODE_ENV === "production" ? {}:{
-  apiUrl: "https://baguette-signer.request.network"
+  apiUrl: "https://baguette-signer.request.network/api"
 };
 const request = new Request(process.env.API_KEY, requestOptions);
+
+const jsonParser =bodyParser.json();
 
 app.use(express.static('public'));
 // workaround for fonts, should be removed when package is used
@@ -17,9 +21,27 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.post('/request', (req,res) => {
-  console.log('request received',req.body);
-  //await request.getSignedTransaction({});
+app.post('/request',jsonParser, async (req,res) => {
+  const {currency, amount, data} =req.body;
+  console.log('request received',{
+    currency, amount, data
+  });
+  try{
+    const response = await request.getSignedTransaction({
+          amount,
+          currency,
+          data,
+          paymentAddress:"0x474467F3fac841b5C37B399B6D410B2a3EBC9E41"
+        });
+    const x = await response.json();
+    response.write(x);
+  }
+  catch(err)
+  {
+    console.log(err);
+    
+  }
+
 });
 
 const listener = app.listen(process.env.PORT, function() {
