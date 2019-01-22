@@ -29,7 +29,7 @@ app.get("/", (re, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.post("/request", async (req, res) => {
+app.post("/request", request()async (req, res) => {
   const { amount, data, currency } = req.body;
   const tx = await request.getSignedTransaction({
     amount,
