@@ -4,7 +4,6 @@ const SIGNER_URL = 'https://baguette-signer.request.network/api/sign-request';
 const API_KEY = process.env.API_KEY;
 
 
-
 const signRequest = async (ethAmount, paymentAddress) => {
   // you need get the necessary information to sign
   // pass in your API_KEY to be able to sign requests
