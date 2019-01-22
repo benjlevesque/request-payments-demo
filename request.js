@@ -24,11 +24,11 @@ class Request {
                     expirationDate,
                     paymentAddress
                 });
-              console.log(response.data)
+              
                 return response.data;
             }
             catch (error) {
-                console.log(error);
+                
                 throw new Error("Error while creating request: " + error);
             }
         });

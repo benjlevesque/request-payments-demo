@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const Request = require("./request").default;
+const axios = require('axios');
 const options =
   process.env.NODE_ENV === "production"
     ? {}
@@ -29,7 +30,6 @@ app.get("/", (re, res) => {
 });
 
 app.post("/request", async (req, res) => {
-  console.log((await axios('https://baguette-signer.request.network/')).data);
   const { amount, data, currency } = req.body;
   const tx = await request.getSignedTransaction({
     amount,
@@ -37,8 +37,7 @@ app.post("/request", async (req, res) => {
     data,
     paymentAddress: "0x474467F3fac841b5C37B399B6D410B2a3EBC9E41"
   });
-  console.log(tx)
-  res.write(tx);
+  res.send(JSON.stringify(tx));
 });
 
 app.use(function(err, req, res, next) {
