@@ -8,17 +8,14 @@ const getData  = ()=> {
 
 // OK~
 const SimplePayment = SimplePaymentModule.default;
-const payment = new SimplePayment({
-      baseAmount: 70,
-      baseCurrency: "EUR"
-  }, "/my-endpoint");
+const payment = new SimplePayment();
 
-
+// NOK
 payment.init("#request-payment");
 
 
-// NOK
-const callback = async ({currency, amount}) => {
+
+(async () => {
   const rawResponse = await fetch('/request', {
     method: 'POST',
     headers: {
@@ -37,4 +34,4 @@ const callback = async ({currency, amount}) => {
   const content = await rawResponse.json();
 
   console.log(content);
-});
+})();
