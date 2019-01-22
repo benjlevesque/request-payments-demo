@@ -1,71 +1,44 @@
-/* styles */
-/* called by your view template */
-
-* {
-  box-sizing: border-box;
-}
-
+html,
 body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
+  background-color: #f7f8fa;
+  font-family: Poppins, sans-serif;
 }
 
-h1 {
-  font-style: italic;
-  color: #373fff;
+#root {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
 }
 
-.bold {
-  font-weight: bold;
+#cart-summary {
+  color: #334f6d;
+}
+#root h1 {
+  margin-top: 150px;
+  text-align: left;
+  color: #334f6d;
+}
+#checkout {
+  width: 450px;
+  height: 180px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border-radius: 5px;
 }
 
-p {
-  max-width: 600px;
-}
-
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: cyan;
-  display: inline-block;
+#root table {
   width: 100%;
-  max-width: 340px;
-  border-radius: 3px;
+}
+#root table > thead {
+  text-align: left;
 }
 
-input {
-  display: block;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
-}
-
-button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: yellow;
-}
-
-button:active {
-  box-shadow: none;
-}
-
-li {
-  margin-bottom: 5px;
-}
-
-footer {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
+#request-payment {
+  margin-top: 16px;
+  width: 450px;
+  display: flex;
+  flex-direction: row-reverse;
 }
