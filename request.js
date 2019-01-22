@@ -1,29 +1,36 @@
-const axios = require("axios");
-const SIGNER_URL = 'https://baguette-signer.request.network/api/sign-request';
-
-const API_KEY = process.env.API_KEY;
-
-
-const signRequest = async (ethAmount, paymentAddress) => {
-  // you need get the necessary information to sign
-  // pass in your API_KEY to be able to sign requests
-  
-  const data = ({
-    currency : 'ETH',
-    paymentAddress,
-    expectedAmount : ethAmount,
-    data: { 
-      description: 'request-signer signed request' 
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const axios_1 = require("axios");
+const defaultOptions = {
+    apiUrl: "http://accounts.request.network/api"
+};
+class Request {
+    constructor(apiKey, options) {
+        this.createRequest = (args) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.client.post("/raw-broadcast-tx", args);
+                return response.data;
+            }
+            catch (error) {
+                console.log(error);
+                throw new Error("Error while creating request: " + error);
+            }
+        });
+        options = Object.assign({}, defaultOptions, options);
+        this.client = axios_1.default.create({
+            baseURL: options.apiUrl,
+            headers: {
+                authorization: apiKey
+            }
+        });
     }
-  });
-  
-  
-  const response = await axios.post(SIGNER_URL, data, {
-    headers:  { 
-      authorization: `${API_KEY}` 
-    }
-  });
-  return response.data;
 }
-
-module.exports= { signRequest };
+exports.default = Request;

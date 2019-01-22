@@ -7,7 +7,8 @@ const getData  = ()=> {
 
 const SimplePayment = SimplePaymentModule.default;
 const payment = new SimplePayment();
-
+payment.init("#request-payment");
+/*
 payment.init("#request-payment", ()=> {
   const amount = document.getElementById("amount").val();
   return {
@@ -19,5 +20,5 @@ payment.init("#request-payment", ()=> {
 payment.init("#request-payment, {
     amount: 100,
     currency: "EUR"
-});
+});*/
 
