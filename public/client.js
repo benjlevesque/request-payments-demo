@@ -1,22 +1,26 @@
-// NOK
-const getData  = ()=> {
-  return {
-    amount: 110,
-    currency: "EUR"
-  };
-}
-
 // OK~
 const SimplePayment = SimplePaymentModule.default;
 const payment = new SimplePayment();
 
-// NOK
-payment.init("#request-payment");
+// payment.init("#request-payment");
+
+const endpoint = '/request'
+
+payment.init("#request-payment", () => ({
+  allowedPaymentCurrencies: ["ETH"],
+  baseAmount: 110,
+  baseCurrency: "EUR"
+}));
 
 
 
+// move to library
 (async () => {
-  const rawResponse = await fetch('/request', {
+  const convert = (amount, currency, toCurrency) => ({
+    return 100;
+  });
+    
+  const rawResponse = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -34,4 +38,4 @@ payment.init("#request-payment");
   const content = await rawResponse.json();
 
   console.log(content);
-})();
+});
