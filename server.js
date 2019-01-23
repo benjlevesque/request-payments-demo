@@ -5,7 +5,7 @@ const Request = require("./request").default;
 const axios = require('axios');
 
   
-const request = new Request(process.env.API_KEY, "0x4B7B1cBbd739A2A0e95b32B64FD3D249c671bd44", {
+const request = new Request(process.env.API_KEY, process.env.ETH_ADDRESS, {
         apiUrl: "https://baguette-signer.request.network/api"
       });
 
