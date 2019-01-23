@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const request = require("./request")(process.env.API_KEY, {
         apiUrl: "https://baguette-signer.request.network/api"
       });
-const axios = require('axios');
 
 
 const app = express();
