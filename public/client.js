@@ -4,7 +4,7 @@ const payment = new SimplePayment();
 
 payment.init("#request-payment",'/request', () => ({
   allowedPaymentCurrencies: ["ETH"],
-  baseAmount: 110,
+  baseAmount: 70,
   baseCurrency: "EUR"
 }));
 
