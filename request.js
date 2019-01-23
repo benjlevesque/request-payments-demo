@@ -17,7 +17,7 @@ class Request {
         this.getSignedTransaction = ({ amount, currency, data, expirationDate, paymentAddress }) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.client.post("/raw-broadcast-tx", {
-                    expectedAmount: amount,
+                    expectedAmount: amount.toString(),
                     currency,
                     data,
                     expirationDate,
@@ -39,7 +39,7 @@ class Request {
                 data,
                 paymentAddress
             });
-            res.send(JSON.stringify(tx));
+            res.send(tx);
         });
         options = Object.assign({}, defaultOptions, options);
         this.paymentAddress = paymentAddress;
