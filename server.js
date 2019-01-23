@@ -10,7 +10,7 @@ const options =
         apiUrl: "https://baguette-signer.request.network/api"
       };
 
-const request = new Request(process.env.API_KEY, "0x474467F3fac841b5C37B399B6D410B2a3EBC9E41", options);
+const request = new Request(process.env.API_KEY, process.env.ETH_ADDRESS, options);
 
 const app = express();
 
