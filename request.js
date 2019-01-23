@@ -17,7 +17,7 @@ class Request {
         this.getSignedTransaction = ({ amount, currency, data, expirationDate, paymentAddress }) => __awaiter(this, void 0, void 0, function* () {
             try {
               const args = {
-                    expectedAmount: amount.toString(),
+                    expectedAmount: amount.toFixed(6).toString(),
                     currency,
                     data,
                     paymentAddress
