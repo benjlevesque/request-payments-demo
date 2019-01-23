@@ -13,9 +13,8 @@ const defaultOptions = {
     apiUrl: "http://accounts.request.network/api"
 };
 class Request {
-    constructor(apiKey, options) {
+    constructor(apiKey, paymentAddress, options) {
         this.getSignedTransaction = ({ amount, currency, data, expirationDate, paymentAddress }) => __awaiter(this, void 0, void 0, function* () {
-          
             try {
                 const response = yield this.client.post("/raw-broadcast-tx", {
                     expectedAmount: amount,
@@ -24,15 +23,26 @@ class Request {
                     expirationDate,
                     paymentAddress
                 });
-              
                 return response.data;
             }
             catch (error) {
-                
+                console.log(error);
                 throw new Error("Error while creating request: " + error);
             }
         });
+        this.handler = () => (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { amount, data, currency } = req.body;
+            const { paymentAddress } = this;
+            const tx = yield this.getSignedTransaction({
+                amount,
+                currency,
+                data,
+                paymentAddress
+            });
+            res.send(JSON.stringify(tx));
+        });
         options = Object.assign({}, defaultOptions, options);
+        this.paymentAddress = paymentAddress;
         this.client = axios_1.default.create({
             baseURL: options.apiUrl,
             headers: {

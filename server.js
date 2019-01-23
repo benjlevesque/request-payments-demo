@@ -9,7 +9,8 @@ const options =
     : {
         apiUrl: "https://baguette-signer.request.network/api"
       };
-const request = new Request(process.env.API_KEY, options);
+
+const request = new Request(process.env.API_KEY, "0x474467F3fac841b5C37B399B6D410B2a3EBC9E41", options);
 
 const app = express();
 
@@ -29,16 +30,8 @@ app.get("/", (re, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.post("/request", async (req, res) => {
-  const { amount, data, currency } = req.body;
-  const tx = await request.getSignedTransaction({
-    amount,
-    currency,
-    data,
-    paymentAddress: "0x474467F3fac841b5C37B399B6D410B2a3EBC9E41"
-  });
-  res.send(JSON.stringify(tx));
-});
+    
+app.post("/request", request.handler());
 
 app.use(function(err, req, res, next) {
   res.status(500);

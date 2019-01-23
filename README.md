@@ -8,7 +8,7 @@ _Integrate cryptocurrency payments: no blockchain knowledge required!_
 - multiple currencies supported (coming soon)
 
 ## How to use this demo
-- sign up to https://accounts.request.network/signup to get your `testnet` API Key
+- sign up to [Request Accounts](https://accounts.request.network/signup) to get your `testnet` API Key
 - enter your API Key in the .env file:
 ```
 API_KEY=xxx-xxx-xxx-xxx
