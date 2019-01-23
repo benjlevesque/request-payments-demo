@@ -7,23 +7,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = require("axios");
 const defaultOptions = {
     apiUrl: "http://accounts.request.network/api"
 };
 class Request {
-    constructor(apiKey, paymentAddress, options) {
+    constructor(apiKey, options) {
         this.getSignedTransaction = ({ amount, currency, data, expirationDate, paymentAddress }) => __awaiter(this, void 0, void 0, function* () {
             try {
-              const args = {
+                const response = yield this.client.post("/raw-broadcast-tx", {
                     expectedAmount: amount.toFixed(6).toString(),
                     currency,
                     data,
+                    expirationDate,
                     paymentAddress
-                };
-              console.log(args);
-                const response = yield this.client.post("/raw-broadcast-tx",args);
+                });
                 return response.data;
             }
             catch (error) {
@@ -31,10 +29,8 @@ class Request {
                 throw new Error("Error while creating request: " + error);
             }
         });
-        this.handler = () => (req, res) => __awaiter(this, void 0, void 0, function* () {
-            console.log(req.body);  
+        this.handler = (paymentAddress) => (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { amount, data, currency } = req.body;
-            const { paymentAddress } = this;
             const tx = yield this.getSignedTransaction({
                 amount,
                 currency,
@@ -44,7 +40,6 @@ class Request {
             res.send(tx);
         });
         options = Object.assign({}, defaultOptions, options);
-        this.paymentAddress = paymentAddress;
         this.client = axios_1.default.create({
             baseURL: options.apiUrl,
             headers: {
@@ -53,4 +48,4 @@ class Request {
         });
     }
 }
-exports.default = Request;
+module.exports = (apiKey, options) => new Request(apiKey, options);
