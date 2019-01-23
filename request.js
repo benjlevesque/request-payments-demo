@@ -16,13 +16,14 @@ class Request {
     constructor(apiKey, paymentAddress, options) {
         this.getSignedTransaction = ({ amount, currency, data, expirationDate, paymentAddress }) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.client.post("/raw-broadcast-tx", {
+              const args = {
                     expectedAmount: amount.toString(),
                     currency,
                     data,
-                    expirationDate,
                     paymentAddress
-                });
+                };
+              console.log(args);
+                const response = yield this.client.post("/raw-broadcast-tx",args);
                 return response.data;
             }
             catch (error) {
@@ -31,6 +32,7 @@ class Request {
             }
         });
         this.handler = () => (req, res) => __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body);  
             const { amount, data, currency } = req.body;
             const { paymentAddress } = this;
             const tx = yield this.getSignedTransaction({
