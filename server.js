@@ -26,10 +26,6 @@ app.get("*.woff2", (req, res) => {
 });
 app.use(express.static("public"));
 
-app.get("/", (re, res) => {
-  res.sendFile(__dirname + "/views/index.html");
-});
-
     
 app.post("/request", request.handler());
 
