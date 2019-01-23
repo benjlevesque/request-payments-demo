@@ -3,14 +3,11 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const Request = require("./request").default;
 const axios = require('axios');
-const options =
-  process.env.NODE_ENV === "production"
-    ? {}
-    : {
-        apiUrl: "https://baguette-signer.request.network/api"
-      };
 
-const request = new Request(process.env.API_KEY, process.env.ETH_ADDRESS, options);
+  
+const request = new Request(process.env.API_KEY, "0x4B7B1cBbd739A2A0e95b32B64FD3D249c671bd44", {
+        apiUrl: "https://baguette-signer.request.network/api"
+      });
 
 const app = express();
 
