@@ -6,6 +6,6 @@ payment.init("#request-payment",'/request', () => ({
   allowedPaymentCurrencies: ["ETH"],
   baseAmount: 70,
   baseCurrency: "EUR"
-}));
+},{ buttonVariant: "dark" }));
 
 
