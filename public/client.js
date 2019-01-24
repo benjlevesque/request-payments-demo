@@ -1,13 +1,13 @@
-// OK~
-const SimplePayment = SimplePaymentModule.default;
-const payment = new SimplePayment();
 
-
-
-payment.init("#request-payment",'/request', () => ({
+RequestPayments.init({
+  selector:"#request-payment",
+  endpoint: '/request', 
+  paymentOptions: {
   allowedPaymentCurrencies: ["ETH"],
   baseAmount: 7,
   baseCurrency: "EUR"
-}),{ buttonVariant: "dark" });
+  },
+  style:{ buttonVariant: "dark" }
+});
 
 
