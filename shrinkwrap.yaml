@@ -1,8 +1,15 @@
 dependencies:
+  '@requestnetwork/payments-server': 0.2.0-alpha.0
   axios: 0.18.0
   body-parser: 1.18.3
   express: 4.16.4
 packages:
+  /@requestnetwork/payments-server/0.2.0-alpha.0:
+    dependencies:
+      axios: 0.18.0
+    dev: false
+    resolution:
+      integrity: sha512-BLs5m4eWN7wj83C3aLZhdHyahz3cHS0Xe7DFbC0b3Iyx3yH/dUlleplI7aX2SVULE9Zo5oPG7L6HmpKQAMXjQA==
   /accepts/1.3.5:
     dependencies:
       mime-types: 2.1.21
@@ -395,6 +402,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  '@requestnetwork/payments-server': 0.2.0-alpha.0
   axios: 0.18.0
   body-parser: 1.18.3
   express: ^4.16.4

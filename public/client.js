@@ -1,13 +1,18 @@
-// OK~
-const SimplePayment = SimplePaymentModule.default;
-const payment = new SimplePayment();
 
+const selector = "#request-payment"
+const getPaymentOptions = ()=>{
+  const element = document.querySelector(selector);
+  return {
+    baseAmount: element.getAttribute('data-amount'),
+    baseCurrency: element.getAttribute('data-currency')
+  }
+};
 
-
-payment.init("#request-payment",'/request', () => ({
-  allowedPaymentCurrencies: ["ETH"],
-  baseAmount: 7,
-  baseCurrency: "EUR"
-}),{ buttonVariant: "dark" });
+RequestPayments.init({
+  selector,
+  endpoint: '/request', 
+  paymentOptions: getPaymentOptions,
+  style:{ buttonVariant: "dark" }
+});
 
 
