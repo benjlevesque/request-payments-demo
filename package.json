@@ -9,13 +9,14 @@
   "dependencies": {
     "express": "^4.16.4",
     "axios": "0.18.0",
-    "body-parser": "1.18.3"
+    "body-parser": "1.18.3",
+    "@requestnetwork/payments-server": "0.2.0-alpha.0"
   },
   "engines": {
     "node": "8.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://glitch.com/edit/#!/request-payments-demo"
   },
   "license": "MIT",
   "keywords": [
