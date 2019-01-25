@@ -7,11 +7,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static("public"));
-app.get("*.woff2", (req, res) => {
-  res.redirect(
-    "https://cdn.glitch.com/d8b7821c-1897-435c-81c4-78fdce354672%2F478ee99fcfc90f4f.woff2"
-  );
-});
 
     
 app.post("/request", request.handler(process.env.ETH_ADDRESS));
