@@ -10,7 +10,7 @@
     "express": "^4.16.4",
     "axios": "0.18.0",
     "body-parser": "1.18.3",
-    "@requestnetwork/payments-server": "0.2.0-alpha.0"
+    "@requestnetwork/payments-server": "0.2.0-alpha.4"
   },
   "engines": {
     "node": "8.x"
