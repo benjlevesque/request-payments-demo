@@ -13,6 +13,11 @@
     
   </head>
   <body>
+      <label id="toggle">
+        <input type="checkbox" id="v2-checkbox" onclick="initPaymentButton()">
+        Use V2!
+      </label>
+
       <div id="root">
         <h1>Yet another crypto shop</h1>
         <div id="checkout">
@@ -40,13 +45,33 @@
       <div id="request-payment" 
            data-amount="7" 
            data-currency="EUR"
-           data-endpoint="/request"
            data-style-button-variant="dark"></div>
     </div>
     
-    <script src="https://unpkg.com/@requestnetwork/payments@next/dist/payments.iife.production.js"></script>
+    <script src="https://unpkg.com/request-payments@0.4.0-alpha.2/dist/request-payments.iife.production.js"></script>
     <script>
-      RequestPayments.init("#request-payment");
+      initPaymentButton();
+
+      function initPaymentButton() {
+        var checkbox = document.getElementById("v2-checkbox");
+        var rateApi = {
+          convert: (amount, currency, toCurrency) => {
+            return Promise.resolve(amount * 0.01);
+          },
+        };
+        var options = checkbox.checked ? {
+          flags: { v2: true },
+          requestApi: "http://a34e78a692ad011e98ec50694bd2f1e0-25488388.eu-west-1.elb.amazonaws.com",
+          signingApi: "/request",
+          rateApi: rateApi
+        } : {
+          flags: { v2: false },
+          signingApi: "/request",
+          rateApi: rateApi
+        };
+
+        RequestPayments.init("#request-payment", options);
+      }
     </script>
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->

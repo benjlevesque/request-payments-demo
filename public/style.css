@@ -42,3 +42,10 @@ body {
   display: flex;
   flex-direction: row-reverse;
 }
+
+#toggle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 8px;
+}
