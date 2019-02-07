@@ -45,16 +45,18 @@
       <div id="request-payment" 
            data-amount="7" 
            data-currency="EUR"
+           data-endpoint="/request"
            data-style-button-variant="dark"></div>
     </div>
     
     <script src="https://unpkg.com/request-payments@0.4.0-alpha.2/dist/request-payments.iife.production.js"></script>
     <script>
+
       initPaymentButton();
 
       function initPaymentButton() {
         var checkbox = document.getElementById("v2-checkbox");
-        var rateApi = {
+        var rateApi = {      
           convert: (amount, currency, toCurrency) => {
             return Promise.resolve(amount * 0.01);
           },
