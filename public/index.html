@@ -60,24 +60,17 @@
             return Promise.resolve(amount * 0.01);
           },
         };
-        var commonOptions = {
+        var options = {
+          flags: { v2: checkbox.checked },
           signingApi: "/request",
           rateApi: rateApi,
+          apikey: "234TZ4P-CKMMMTH-PD9Z4FH-Z8WS1S9",
           paymentOptions: {
             payeeAddress: "0x627306090abab3a6e1400e9345bc60c78a8bef57",
             baseAmount: 7,
             baseCurrency: "EUR"
           }
-        }
-        var options = checkbox.checked ? {
-          flags: { v2: true },
-          requestApi: "http://a34e78a692ad011e98ec50694bd2f1e0-25488388.eu-west-1.elb.amazonaws.com",
-          ...commonOptions
-        } : {
-          flags: { v2: false },
-          ...commonOptions
         };
-
         RequestPayments.init("#request-payment", options);
       }
     </script>
