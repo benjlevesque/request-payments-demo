@@ -44,9 +44,18 @@
            data-style-button-variant="dark"></div>
     </div>
     
-    <script src="https://unpkg.com/@requestnetwork/payments@next/dist/payments.iife.production.js"></script>
+    <script src="https://unpkg.com/request-payments@0.4.0-alpha.1/dist/request-payments.iife.production.js"></script>
     <script>
-      RequestPayments.init("#request-payment");
+      // workaround for rates...
+      const rateApi = {
+          convert: (amount, currency, toCurrency) => {
+            return Promise.resolve(amount * 0.01);
+          },
+        };
+      
+      RequestPayments.init("#request-payment", {
+        rateApi
+      });
     </script>
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
