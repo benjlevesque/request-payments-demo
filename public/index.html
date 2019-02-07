@@ -44,7 +44,7 @@
            data-style-button-variant="dark"></div>
     </div>
     
-    <script src="https://unpkg.com/request-payments@0.4.0-alpha.1/dist/request-payments.iife.production.js"></script>
+    <script src="https://unpkg.com/request-payments@latest/dist/request-payments.iife.production.js"></script>
     <script>
       // workaround for rates...
       const rateApi = {
@@ -54,7 +54,11 @@
         };
       
       RequestPayments.init("#request-payment", {
-        rateApi
+        rateApi,
+        flags:{
+          v2: true
+        },
+        requestApi: "http://a34e78a692ad011e98ec50694bd2f1e0-25488388.eu-west-1.elb.amazonaws.com"
       });
       
     </script>
