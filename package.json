@@ -9,7 +9,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "axios": "0.18.0",
-    "body-parser": "1.18.3",
+    "body-parser": "1.20.3",
     "@requestnetwork/payments-server": "0.2.0-alpha.4"
   },
   "engines": {
